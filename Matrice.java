@@ -23,7 +23,7 @@ public class Matrice {
    	 
     	for (int i=0; i<nl; i++){
             for (int j=0; j<nc; j++){
-                System.out.println("Rentrer le coefficient m("+(i+1)+"."+(j+1)+")");
+                System.out.println("Rentrer le coefficient ("+(i+1)+"."+(j+1)+")");
             	coeffs[i][j]=Lire.d();
             }
     	}

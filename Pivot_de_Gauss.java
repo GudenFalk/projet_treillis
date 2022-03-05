@@ -24,5 +24,11 @@ public class Pivot_de_Gauss {
             }
     	System.out.println();
     	}
+        
+        if (nl!=nc){
+            System.out.println("La matrice n'étant pas carrée, elle n'est pas inversible.");
+        
+            
+        }
     }
  }
