@@ -12,14 +12,15 @@ package com.gudenfalk.pivot_de_gauss;
 public class Pivot_de_Gauss {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("La matrice est:");
     	Matrice m;
-    	int nl=3;
-    	int nc=2;
+    	int nl=Lire.i();
+        int nc=Lire.i();
+        
     	m=new Matrice(nl,nc);
     	for (int i=0; i<nl; i++){
             for (int j=0; j<nc; j++){
-            	System.out.print(m.coeffs[i][j]+" ");
+            	System.out.print(+m.coeffs[i][j]+" ");
             }
     	System.out.println();
     	}

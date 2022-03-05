@@ -1,3 +1,5 @@
+package com.gudenfalk.pivot_de_gauss;
+
 import java.io.*;
 
 /**
