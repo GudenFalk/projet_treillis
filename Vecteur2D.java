@@ -1,31 +1,30 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fr.insa.beauquis.tpinfo.tpinfo;
+package fr.insa.beauquis.projet_treillis;
 
 /**
  *
- * @author dbeauquis01
+ * @author Dorian
  */
 public class Vecteur2D {
     
-    //Attributs
+    //Atributs
     private double x,y;
     
     //Constructeur
     Vecteur2D(double x,double y){
-       this.x=x;
-       this.y=y;
+        this.x=x;
+        this.y=y;
     }
     
-    //Encapsulation (Get et Set)
+    //Encapsulation ("Get" et "Set")
     double getX(){
-        return(this.x);
+        return this.x;
     }
     double getY(){
-        return(this.y);
+        return this.y;
     }
     void setX(double x){
         this.x=x;
@@ -34,9 +33,9 @@ public class Vecteur2D {
         this.y=y;
     }
     
-    //Affichage ToString
+    //Affichage en "toString"
     @Override
     public String toString(){
-        return("force F("+this.x+";"+this.y+").");
+        return "force ("+this.x+";"+this.y+")";
     }
 }

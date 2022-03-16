@@ -1,16 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fr.insa.beauquis.tpinfo.tpinfo;
+package fr.insa.beauquis.projet_treillis;
 
 /**
  *
- * @author dbeauquis01
+ * @author Dorian
  */
 public class Noeud {
-    
     //Atributs
     private int id;
     private double px,py;
@@ -55,6 +53,7 @@ public class Noeud {
     Vecteur2D getPf(){
         return this.pf;
     }
+    
     void setId(int id){
         this.id=id;
     }
@@ -71,7 +70,7 @@ public class Noeud {
     //Affichage en "toString"
     @Override
     public String toString(){
-        return "Noeud: n("+this.px+";"+this.py+"). On y applique une "+this.pf;
+        return "("+this.px+";"+this.py+"), avec une "+this.pf;
     }
     
     //Méthode entreeNoeud
@@ -80,6 +79,7 @@ public class Noeud {
         Vecteur2D pf;
         Noeud n;
         int id=-1;
+        
         System.out.println("Entrer la composante en x de F:");
         x=Lire.d();
         System.out.println("Entrer la composante en y de F:");
@@ -88,6 +88,7 @@ public class Noeud {
         px=Lire.d();
         System.out.println("Entrer la coordonnée en y du noeud:");
         py=Lire.d();
+        
         pf= new Vecteur2D(x,y);
         n= new Noeud(id,px,py,pf);
         return n;

@@ -1,16 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fr.insa.beauquis.tpinfo.tpinfo;
+package fr.insa.beauquis.projet_treillis;
 
 /**
  *
- * @author dbeauquis01
+ * @author Dorian
  */
 public class Barre {
-    
     //Attributs
     int id;
     Noeud noeud_depart,noeud_arrive;
@@ -67,6 +65,41 @@ public class Barre {
     //Affichage en "toString"
     @Override
     public String toString(){
-        return "La barre est défini par les noeuds de départ et d'arrivé:"+this.noeud_depart+this.noeud_depart+".Elle a un cout de "+this.cout+", une traction max de "+this.traction_max+" et une compression max de "+this.compression_max+"."; 
+        return "La barre est défini par les noeuds de départ"+this.noeud_depart+", et d'arrivé"+this.noeud_depart+".Elle a un cout de "+this.cout+"€, une traction max de "+this.traction_max+" et une compression max de "+this.compression_max+"."; 
     }
+    
+    //Méthode
+    public static Barre entreeBarre(){
+        double traction_max,compression_max;
+        double cout;
+        int id=-1;
+        Barre b;
+        
+        System.out.println("Entrer les données du noeud de départ:");
+        Noeud noeud_depart=Noeud.entreeNoeud();
+        System.out.println("Entrer les données du noeud d'arrivée:");
+        Noeud noeud_arrive=Noeud.entreeNoeud();
+        System.out.println("Entrer la traction maximale:");
+        traction_max=Lire.d();
+        System.out.println("Entrer la compression maximale:");
+        compression_max=Lire.d();
+        System.out.println("Entrer le coût de la barre:");
+        cout=Lire.d();
+        
+        b= new Barre(id,traction_max,compression_max,cout,noeud_depart,noeud_arrive);
+        return b;
+    }
+    
+    public Noeud noeudOppose(Barre b,Noeud n){
+        Noeud m=n;
+        System.out.println("Entrer les données du noeud appartenant à la barre.");
+        if (n==noeud_depart){
+            System.out.println("La noeud opposé est le noeud ");
+            m=noeud_arrive;
+        } else if(n==noeud_arrive){
+            System.out.println("La noeud opposé est le noeud ");
+            m=noeud_depart;
+        }
+        return m;
+    } 
 }

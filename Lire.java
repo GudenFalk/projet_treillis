@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package fr.insa.beauquis.tpinfo.tpinfo;
+package fr.insa.beauquis.projet_treillis;
 
-/**
- *
- * @author dbeauquis01
- */
 import java.io.*;
 
 /**
@@ -595,4 +586,3 @@ public class Lire
         return resultat;
     } // fin de String separer(int nombre)
 }
-////
