@@ -1,15 +1,15 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package com.gudenfalk.pivot_de_gauss;
+package fr.insa.beauquis.tpinfo.tpinfo;
 
 /**
  *
- * @author Dorian
+ * @author dbeauquis01
  */
 public class Matrice {
-        
     //Attributs
     public int nbrLig;
     public int nbrCol;
