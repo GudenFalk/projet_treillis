@@ -1,18 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fr.insa.beauquis.tpinfo.tpinfo;
+package fr.insa.beauquis.projet_treillis.classes;
 
 /**
  *
- * @author dbeauquis01
+ * @author Dorian
  */
 public abstract class Noeud_Appui extends Noeud{
     
-    public Noeud_Appui(int id, double px, double py, Vecteur2D pf) {
-        super(id, px, py, pf);
+    public Noeud_Appui(int id, int type, double px, double py, Vecteur2D pf) {
+        super(id,type, px, py, pf);
     }
-    
 }
