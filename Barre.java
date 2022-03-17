@@ -1,14 +1,16 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package fr.insa.beauquis.projet_treillis;
+package fr.insa.beauquis.tpinfo.tpinfo;
 
 /**
  *
- * @author Dorian
+ * @author dbeauquis01
  */
 public class Barre {
+    
     //Attributs
     int id;
     Noeud noeud_depart,noeud_arrive;
@@ -65,7 +67,7 @@ public class Barre {
     //Affichage en "toString"
     @Override
     public String toString(){
-        return "La barre est défini par les noeuds de départ"+this.noeud_depart+", et d'arrivé"+this.noeud_depart+".Elle a un cout de "+this.cout+"€, une traction max de "+this.traction_max+" et une compression max de "+this.compression_max+"."; 
+        return "La barre est défini par les noeuds de départ"+this.noeud_depart+", et d'arrivé"+this.noeud_arrive+".Elle a un cout de "+this.cout+"€, une traction max de "+this.traction_max+" et une compression max de "+this.compression_max+"."; 
     }
     
     //Méthode
@@ -90,16 +92,19 @@ public class Barre {
         return b;
     }
     
-    public Noeud noeudOppose(Barre b,Noeud n){
-        Noeud m=n;
+    public Noeud noeudOppose(Noeud n){
+        Noeud m;
         System.out.println("Entrer les données du noeud appartenant à la barre.");
-        if (n==noeud_depart){
+        if (n.getPx()==this.noeud_depart.getPx()&&n.getPy()==this.noeud_depart.getPy()){
             System.out.println("La noeud opposé est le noeud ");
-            m=noeud_arrive;
-        } else if(n==noeud_arrive){
+            m=this.noeud_arrive;
+            return m;
+        } else if(n.getPx()==this.noeud_arrive.getPx()&&n.getPy()==this.noeud_arrive.getPy()){
             System.out.println("La noeud opposé est le noeud ");
-            m=noeud_depart;
+            m=this.noeud_depart;
+            return m;
+        } else{
+            throw new Error("Ce noeud n'appartient pas à la barre.");
         }
-        return m;
     } 
 }
