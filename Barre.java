@@ -1,17 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fr.insa.beauquis.tpinfo.tpinfo;
+package fr.insa.beauquis.projet_treillis.classes;
+import fr.insa.beauquis.projet_treillis.recup.Lire;
 
 /**
  *
- * @author dbeauquis01
+ * @author Dorian
  */
 public class Barre {
-    
-    //Attributs
+     //Attributs
     int id;
     Noeud noeud_depart,noeud_arrive;
     double traction_max,compression_max,cout;
@@ -106,5 +105,27 @@ public class Barre {
         } else{
             throw new Error("Ce noeud n'appartient pas à la barre.");
         }
-    } 
+    }
+    
+    public double angle(Noeud n,Barre b){
+        double x_nm,y_nm,x_Ox,y_Ox,Norme_nm,Norme_Ox,Scalaire,cosinus,angle;
+        Vecteur2D nm, Ox;
+        Noeud m=b.noeudOppose(n);
+        
+        x_nm=n.getPx()-m.getPx();
+        y_nm=n.getPy()-m.getPy();
+        x_Ox=1;
+        y_Ox=0;
+        
+        nm= new Vecteur2D(x_nm,y_nm);
+        Ox= new Vecteur2D(x_Ox,y_Ox);
+        
+        Norme_nm=Math.sqrt(Math.pow(x_nm, 2)+Math.pow(y_nm, 2));
+        Norme_Ox=Math.sqrt(Math.pow(x_Ox, 2)+Math.pow(y_Ox, 2));
+        Scalaire=x_nm*x_Ox+y_nm*y_Ox;
+        
+        cosinus=Scalaire/(Norme_nm*Norme_Ox);
+        angle=Math.acos(cosinus);
+        return angle;
+    }
 }
