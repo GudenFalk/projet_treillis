@@ -11,9 +11,9 @@ import fr.insa.beauquis.projet_treillis.recup.Lire;
  */
 public class Barre {
      //Attributs
-    int id;
-    Noeud noeud_depart,noeud_arrive;
-    double traction_max,compression_max,cout;
+    private int id;
+    private Noeud noeud_depart,noeud_arrive;
+    private double traction_max,compression_max,cout;
     
     //Constructeur
     Barre(int id,double traction_max,double compression_max,double cout,Noeud noeud_depart,Noeud noeud_arrive){
@@ -107,25 +107,14 @@ public class Barre {
         }
     }
     
-    public double angle(Noeud n,Barre b){
-        double x_nm,y_nm,x_Ox,y_Ox,Norme_nm,Norme_Ox,Scalaire,cosinus,angle;
-        Vecteur2D nm, Ox;
-        Noeud m=b.noeudOppose(n);
-        
-        x_nm=n.getPx()-m.getPx();
-        y_nm=n.getPy()-m.getPy();
-        x_Ox=1;
-        y_Ox=0;
-        
-        nm= new Vecteur2D(x_nm,y_nm);
-        Ox= new Vecteur2D(x_Ox,y_Ox);
-        
-        Norme_nm=Math.sqrt(Math.pow(x_nm, 2)+Math.pow(y_nm, 2));
-        Norme_Ox=Math.sqrt(Math.pow(x_Ox, 2)+Math.pow(y_Ox, 2));
-        Scalaire=x_nm*x_Ox+y_nm*y_Ox;
-        
-        cosinus=Scalaire/(Norme_nm*Norme_Ox);
-        angle=Math.acos(cosinus);
+    public static double angleHoriz(double x_n, double y_n, double x_m, double y_m){
+        double x_nm=x_m-x_n;
+        double y_nm=y_m-y_n;
+        return Math.atan2(y_m, x_m);
+    }
+    public double angle(Noeud n){
+        Noeud m=this.noeudOppose(n);
+        double angle=(angleHoriz(n.getPx(),n.getPy(),m.getPx(),m.getPy()))/(Math.PI/180);
         return angle;
     }
 }

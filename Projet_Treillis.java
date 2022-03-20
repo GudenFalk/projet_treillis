@@ -16,9 +16,10 @@ public class Projet_Treillis {
         System.out.println(b.toString());
         System.out.println("");
         Noeud n=Noeud.entreeNoeud();
-        Noeud m=b.noeudOppose(n);
-        System.out.print(m.toString());
-        double angle=angle(b,n);
+        //Noeud m=b.noeudOppose(n);
+        //System.out.print(m.toString());
+        double angle=b.angle(n);
+        System.out.println("Il y a un angle de "+angle+"° entre la barre et l'axe horizontal.");
         //Noeud p=Noeud.nbrInconnues();
     }
 }
