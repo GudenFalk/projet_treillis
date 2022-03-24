@@ -3,7 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package fr.insa.beauquis.projet_treillis.classes;
+
 import fr.insa.beauquis.projet_treillis.recup.Lire;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -11,38 +15,23 @@ import fr.insa.beauquis.projet_treillis.recup.Lire;
  */
 public abstract class  Noeud {
     
-    //Atributs
-    private int id,type;
+    //Attributs
+    private int id;
+    int type;
     double px;
     double py;
     Vecteur2D pf;
-    
-    /*Constructeur (Attributs fixes)
+    ArrayList<Barre> barresDepart,barresArrivee;
+
+    //Constructeur (Attributs fixes sauf id)
     Noeud(int id,double px,double py,Vecteur2D pf){
         this.id=id;
         this.px=px;
         this.py=py;
         this.pf=pf;
+        this.barresDepart = new ArrayList<> ();
+        this.barresArrivee = new ArrayList<> ();
     }
-    */
-    
-    //Constructeur (Attributs fixes sauf id)
-    Noeud(int id,int type,double px,double py,Vecteur2D pf){
-        this.id=-1;
-        this.px=px;
-        this.py=py;
-        this.pf=pf;
-        this.type=type;
-    }
-    
-    /*Constructeur (Attributs libres sauf px,py)
-    Noeud(int id,double px,double py,Vecteur2D pf){
-        this.id=-1;
-        this.px=px;
-        this.py=py;
-        this.pf=new Vecteur2D(0,0);
-    }
-    */
     
     //Encapsulation ("Get" et "Set")
     int getId(){
@@ -60,11 +49,14 @@ public abstract class  Noeud {
     Vecteur2D getPf(){
         return this.pf;
     }
+    ArrayList<Barre> getBarresDepart(){
+        return this.barresDepart;
+    }
+    ArrayList<Barre> getBarresArrivee(){
+        return this.barresArrivee;
+    }
     void setId(int id){
         this.id=id;
-    }
-    void setType(int type){
-        this.type=type;
     }
     void setPx(double px){
         this.px=px;
@@ -74,6 +66,12 @@ public abstract class  Noeud {
     }
     void setPf(Vecteur2D pf){
         this.pf=pf;
+    }
+    void setBarresDepart(ArrayList<Barre> barresDepart){
+        this.barresDepart=barresDepart;
+    }
+    void setBarresArrivee(ArrayList<Barre> barresArrivee){
+        this.barresArrivee=barresArrivee;
     }
 
     //Méthode entreeNoeud
@@ -95,44 +93,106 @@ public abstract class  Noeud {
         pf= new Vecteur2D(x,y);
         switch (type) {
             case 1 -> {
-                Noeud_Simple n= new Noeud_Simple(id,type,px,py,pf);
+                Noeud_Simple n= new Noeud_Simple(id,px,py,pf);
                 System.out.println(n.toString());
                 return n;
             }
             case 2 -> {
-                Noeud_Appui_Simple n= new Noeud_Appui_Simple(id,type,px,py,pf);
+                Noeud_Appui_Simple n= new Noeud_Appui_Simple(id,px,py,pf);
                 System.out.println(n.toString());
                 return n;
             }
             case 3 -> {
-                Noeud_Appui_Double n= new Noeud_Appui_Double(id,type,px,py,pf);
+                Noeud_Appui_Double n= new Noeud_Appui_Double(id,px,py,pf);
                 System.out.println(n.toString());
                 return n;
             }
             default -> {
             }
         }
-        return null;
+        throw new Error("Ce type de noeud n'existe pas.");
     }
+    
+    //Méthode comparaison type
+    public static int TypeNoeud(Noeud n){
+        int type;
+        
+        if(n instanceof Noeud_Simple){
+            type=0;
+            return type;    
+        } else if(n instanceof Noeud_Appui_Simple){
+            type=1;
+            return type; 
+        } else if(n instanceof Noeud_Appui_Double){
+            type=2;
+            return type;  
+        }else{
+            throw new Error("Erreur");
+        }
+    }    
+        
     //Méthode nbrInconnues
-    public static Noeud nbrInconnues(){
-        Noeud n=Noeud.entreeNoeud();
-        switch (n.getType()) {
-            case 1 -> {
+    public static Noeud nbrInconnues(Noeud n){
+
+        int type=Noeud.TypeNoeud(n);
+        
+        switch (type) {
+            case 0 -> {
                 System.out.println("Ce noeud possède 0 inconnue.");
                 return n;
             }
-            case 2 -> {
+            case 1 -> {
                 System.out.println("Ce noeud possède 1 inconnue.");
                 return n;
             }
-            case 3 -> {
-                System.out.println("Ce noeud possède 2 inconnues.");
+            case 2 -> {
+                System.out.println("Ce noeud possède 2 inconnue.");
                 return n;
             }
             default -> {
+                    return null;
             }
         }
-        return null;
+    }
+    
+    //Méthode principale
+    public static Noeud mainNoeud(){
+        Noeud n=Noeud.entreeNoeud();
+        n=Noeud.nbrInconnues(n);
+        ArrayList<Barre> b=Noeud.barresIncidentes(n.getBarresDepart(), n.getBarresArrivee());
+        return n;
+    }
+    
+    //Méthode liste de barres incidentes
+    public static ArrayList<Barre> barresIncidentes(ArrayList<Barre> barresDepart, ArrayList<Barre> barresArrivee){
+        ArrayList<Barre> barresIncidentesBase = Noeud.fussionerListeBarres(barresDepart,barresArrivee);
+        ArrayList<Barre> barresIncidentes = Noeud.eliminationDoublonsListeBarres(barresIncidentesBase);
+        ArrayList<Barre> Affichage = Noeud.affichageListeBarresIncidentes(barresIncidentes);
+        return Affichage;
+    }
+    
+    //Méthode pour fussioner deux liste de barres
+    public static ArrayList<Barre> fussionerListeBarres(ArrayList<Barre> barresDepart, ArrayList<Barre> barresArrivee){
+        ArrayList barresIncidentesBase= new ArrayList<>();
+        barresIncidentesBase.addAll(barresDepart);
+        barresIncidentesBase.addAll(barresArrivee);
+        return barresIncidentesBase;
+    }
+    
+    //Méthode pour effacer les doublons de la liste de barres
+    public static ArrayList<Barre> eliminationDoublonsListeBarres(ArrayList<Barre> barresIncidentesBase){
+        Set<Barre> set  = new HashSet<>(barresIncidentesBase);
+        ArrayList<Barre> barresIncidentes = new ArrayList<>();
+        barresIncidentes.addAll(set);
+        return barresIncidentes;
+    }
+    
+    //Méthode pour afficher la liste de barres
+    public static ArrayList<Barre> affichageListeBarresIncidentes(ArrayList<Barre> barresIncidentes){
+        System.out.println("\nBarres incidentes au noeud:");
+        for (int i=0; i<barresIncidentes.size(); i++){
+            System.out.println(barresIncidentes.get(i));
+        }
+        return barresIncidentes;
     }
 }

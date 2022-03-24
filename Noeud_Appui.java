@@ -10,7 +10,7 @@ package fr.insa.beauquis.projet_treillis.classes;
  */
 public abstract class Noeud_Appui extends Noeud{
     
-    public Noeud_Appui(int id, int type, double px, double py, Vecteur2D pf) {
-        super(id,type, px, py, pf);
+    public Noeud_Appui(int id, double px, double py, Vecteur2D pf) {
+        super(id, px, py, pf);
     }
 }

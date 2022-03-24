@@ -4,6 +4,7 @@
  */
 package fr.insa.beauquis.projet_treillis.classes;
 import fr.insa.beauquis.projet_treillis.recup.Lire;
+import java.util.ArrayList;
 
 /**
  *
@@ -66,10 +67,10 @@ public class Barre {
     //Affichage en "toString"
     @Override
     public String toString(){
-        return "La barre est défini par les noeuds de départ"+this.noeud_depart+", et d'arrivé"+this.noeud_arrive+".Elle a un cout de "+this.cout+"€, une traction max de "+this.traction_max+" et une compression max de "+this.compression_max+"."; 
+        return "Noeud "+this.noeud_depart.getId()+" | Noeud "+this.noeud_arrive.getId()+" | "+this.traction_max+" | "+this.compression_max+" | "+this.cout; 
     }
     
-    //Méthode
+    //Méthode pour créer une barre
     public static Barre entreeBarre(){
         double traction_max,compression_max;
         double cout;
@@ -91,15 +92,16 @@ public class Barre {
         return b;
     }
     
+    //Méthode pour donner le noeud opposé sur la barre au noeud rentré
     public Noeud noeudOppose(Noeud n){
         Noeud m;
         System.out.println("Entrer les données du noeud appartenant à la barre.");
         if (n.getPx()==this.noeud_depart.getPx()&&n.getPy()==this.noeud_depart.getPy()){
-            System.out.println("La noeud opposé est le noeud ");
+            //System.out.println("La noeud opposé est le noeud ");
             m=this.noeud_arrive;
             return m;
         } else if(n.getPx()==this.noeud_arrive.getPx()&&n.getPy()==this.noeud_arrive.getPy()){
-            System.out.println("La noeud opposé est le noeud ");
+            //System.out.println("La noeud opposé est le noeud ");
             m=this.noeud_depart;
             return m;
         } else{
@@ -107,14 +109,21 @@ public class Barre {
         }
     }
     
+    //Méthode pour calculer l'angle entre un vecteur quelconque et le vecteur horizontal
     public static double angleHoriz(double x_n, double y_n, double x_m, double y_m){
         double x_nm=x_m-x_n;
         double y_nm=y_m-y_n;
         return Math.atan2(y_m, x_m);
     }
+    
+    //Méthode pour donner l'angle entre une barre et le vecteur horizontal
     public double angle(Noeud n){
         Noeud m=this.noeudOppose(n);
         double angle=(angleHoriz(n.getPx(),n.getPy(),m.getPx(),m.getPy()))/(Math.PI/180);
         return angle;
     }
+    
+    //public static ArrayList<Barre> Noeuds_Barres(Barre b){
+      //  noeud
+    //}
 }

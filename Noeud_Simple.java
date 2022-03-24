@@ -11,13 +11,13 @@ package fr.insa.beauquis.projet_treillis.classes;
 public class Noeud_Simple extends Noeud {
     
     //Constructeur
-    public Noeud_Simple(int id, int type, double px, double py, Vecteur2D pf) {
-        super(id,type, px, py, pf);
+    public Noeud_Simple(int id,double px, double py, Vecteur2D pf) {
+        super(id, px, py, pf);
     }
-    
+
     //Affichage en "toString"
     @Override
     public String toString(){
-        return "Noeud simple: n("+this.px+";"+this.py+"). On y applique une "+this.pf;
+        return "Simple | ("+this.px+";"+this.py+") | "+this.pf;
     }
 }

@@ -9,6 +9,7 @@ package fr.insa.beauquis.projet_treillis.classes;
  * @author Dorian
  */
 public class Vecteur2D {
+    
     //Attributs
     private double x,y;
     
@@ -18,7 +19,7 @@ public class Vecteur2D {
        this.y=y;
     }
     
-    //Encapsulation (Get et Set)
+    //Encapsulation ("Get" et "Set")
     double getX(){
         return(this.x);
     }
@@ -35,6 +36,6 @@ public class Vecteur2D {
     //Affichage ToString
     @Override
     public String toString(){
-        return("force F("+this.x+";"+this.y+").");
+        return("F("+this.x+";"+this.y+")");
     }
 }

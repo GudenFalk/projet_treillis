@@ -5,6 +5,8 @@
 
 package fr.insa.beauquis.projet_treillis.classes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Dorian
@@ -12,14 +14,15 @@ package fr.insa.beauquis.projet_treillis.classes;
 public class Projet_Treillis {
 
     public static void main(String[] args) {
-        Barre b=Barre.entreeBarre();
+        /*Barre b=Barre.entreeBarre();
         System.out.println(b.toString());
         System.out.println("");
         Noeud n=Noeud.entreeNoeud();
-        //Noeud m=b.noeudOppose(n);
-        //System.out.print(m.toString());
+        Noeud m=b.noeudOppose(n);
+        System.out.print(m.toString());
         double angle=b.angle(n);
         System.out.println("Il y a un angle de "+angle+"° entre la barre et l'axe horizontal.");
-        //Noeud p=Noeud.nbrInconnues();
+        Noeud p=Noeud.nbrInconnues();
+         */
     }
 }
