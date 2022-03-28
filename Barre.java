@@ -2,8 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fr.insa.beauquis.projet_treillis.classes;
-import fr.insa.beauquis.projet_treillis.recup.Lire;
+package fr.insa.beauquis.projet;
+
 import java.util.ArrayList;
 
 /**
@@ -120,6 +120,7 @@ public class Barre {
     public double angle(Noeud n){
         Noeud m=this.noeudOppose(n);
         double angle=(angleHoriz(n.getPx(),n.getPy(),m.getPx(),m.getPy()))/(Math.PI/180);
+        System.out.println("Il y a un angle de "+angle+"° entre la barre et l'axe horizontal.");
         return angle;
     }
     

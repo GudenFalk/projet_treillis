@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fr.insa.beauquis.projet_treillis.classes;
+package fr.insa.beauquis.projet;
 
-import fr.insa.beauquis.projet_treillis.recup.Lire;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;

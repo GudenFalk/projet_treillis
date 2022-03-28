@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fr.insa.beauquis.projet_treillis.classes;
+package fr.insa.beauquis.projet;
 
-import fr.insa.beauquis.projet_treillis.recup.Lire;
 import java.util.ArrayList;
 
 /**
@@ -59,9 +58,9 @@ public class Treillis {
     //Méthode pour afficher la liste de noeuds
     public ArrayList<Noeud> affichageListeNoeud(ArrayList<Noeud> noeudTreillis){
         System.out.println("\nNoeud.s du treillis:");
-        System.out.println("Noeud id: Type | Coordonnées | Force");
+        System.out.println("'Noeud id: Type | Coordonnées | Force'");
         for (int i=0; i<noeudTreillis.size(); i++){
-            System.out.println("Noeud "+(i+1)+":"+noeudTreillis.get(i));
+            System.out.println("Noeud "+(i+1)+": "+noeudTreillis.get(i));
         }
         return noeudTreillis;
     }
@@ -69,9 +68,9 @@ public class Treillis {
     //Méthode pour afficher la liste de barres
     public ArrayList<Barre> affichageListeBarre(ArrayList<Barre> barreTreillis){
         System.out.println("\nBarre.s du treillis:");
-        System.out.println("Barre id: Noeud de départ | Noeud d'arrivée | Traction maximale | Compression maximale | Coût");
+        System.out.println("'Barre id: Noeud de départ | Noeud d'arrivée | Traction maximale | Compression maximale | Coût'");
         for (int i=0; i<barreTreillis.size(); i++){
-            System.out.println("Barre "+(i+1)+":"+barreTreillis.get(i));
+            System.out.println("Barre "+(i+1)+": "+barreTreillis.get(i));
         }
         return barreTreillis;
     }
@@ -91,9 +90,9 @@ public class Treillis {
     //Méthode qui ajoute un noeud au treillis et lui donne un identificateur
     public Noeud ajouteNoeud(Noeud n){
         if (noeudTreillis.contains(n)){
-            throw new Error("Ce noeud est déjà dans le treillis.");
+            return n;
         } else{
-            n.setId(Treillis.maxIdNoeud(noeudTreillis)+1);
+            n.setId((Treillis.maxIdNoeud(noeudTreillis))+1);
             noeudTreillis.add(n); 
             return n;
         }
@@ -102,12 +101,12 @@ public class Treillis {
     //Méthode qui ajoute une barre au treillis et lui donne un identificateur
     public Barre ajouteBarre(Barre b){
         if (barreTreillis.contains(b)){
-            throw new Error("Cette barre est déjà dans le treillis.");
+            return b;
         } else{
             b.setId(Treillis.maxIdBarre(barreTreillis)+1);
             Noeud nd=this.ajouteNoeud(b.getNoeud_depart());
             Noeud na=this.ajouteNoeud(b.getNoeud_arrive());
-            barreTreillis.add(b); 
+            barreTreillis.add(b);
             return b;
         }
     }
@@ -118,7 +117,7 @@ public class Treillis {
         noeudTreillis=this.affichageListeNoeud(noeudTreillis);
         System.out.println("Rentrer l'identificateur du noeud voulu.");
         id=Lire.i();
-        while (id>(noeudTreillis.size()+1) || id<=0){
+        while (id>(noeudTreillis.size()) || id<=0){
             System.out.println("Ce noeud n'existe pas, rentrer l'identificateur du noeud voulu appartenant au treillis.");
             id=Lire.i();
         }
@@ -181,11 +180,11 @@ public class Treillis {
         int action=6;
         Treillis t=Treillis.creerTreillis();
         String choix="Non";
-        while (action!=0&&"Oui".equals(choix)){
-            System.out.println("\nRentrer le numéro correspnd à l'action à effectuer.");
+        while (action!=0&&"Non".equals(choix)){
+            System.out.println("\nRentrer le numéro correspondant à l'action à effectuer.");
             System.out.println("Afficher le treillis -> 1");
             System.out.println("Ajouter un noeud -> 2");
-            System.out.println("Supprimer une barre -> 3");
+            System.out.println("Ajouter une barre -> 3");
             //System.out.println("Supprimer un noeud -> 4");
             System.out.println("\nStopper les modifications -> 0");
             action=Lire.i();
@@ -200,16 +199,16 @@ public class Treillis {
                 }
                 case 2 -> {
                     Noeud n=Noeud.entreeNoeud();
-                    Noeud m=this.ajouteNoeud(n);
+                    t.ajouteNoeud(n);
                 }
                 case 3 -> {
                     while (t.getNoeudTreillis().size()<2){
                         System.out.println("\nIl n'y a pas assez de noeuds pour créer une barre.");
                         Noeud n=Noeud.entreeNoeud();
-                        Noeud m=this.ajouteNoeud(n);
+                        t.ajouteNoeud(n);
                     }
-                    Barre b=this.entreeBarreAvecNoeudsChoisis();
-                    Barre d=this.ajouteBarre(b);
+                    Barre b=t.entreeBarreAvecNoeudsChoisis();
+                    t.ajouteBarre(b);
                 }
                 default -> {
                     throw new Error("Le nombre rentré ne correspond pas à une action possible");
